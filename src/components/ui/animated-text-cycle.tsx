@@ -51,18 +51,18 @@ export default function AnimatedTextCycle({
       opacity: 1,
       filter: "blur(0px)",
       transition: {
-        type: "tween" as const,
+        type: "tween",
         duration: 0.4
-      }
+      } as any
     },
     exit: {
       y: 20,
       opacity: 0,
       filter: "blur(8px)",
       transition: {
-        type: "tween" as const,
+        type: "tween",
         duration: 0.3
-      }
+      } as any
     },
   };
 
