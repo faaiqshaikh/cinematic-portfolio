@@ -340,10 +340,10 @@ export function CinematicHero({
             {/* Left Column: About Text */}
             <div className="card-left-text flex flex-col space-y-5 md:space-y-8 text-center lg:text-left w-full">
               <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
-                Crafting pixel-perfect <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">digital experiences</span>
+                Nice to meet you - <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">I'm Faiq Shaikh</span>
               </h2>
               <p className="text-sm md:text-lg lg:text-xl text-blue-100/70 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
-                Hi, I'm <span className="text-white font-medium">Mohammedfaiq Shaikh</span>. A Frontend Developer & UI/UX Designer with 3+ years of experience creating clean, high-impact digital experiences. I specialize in building responsive interfaces, strong brand visuals, and solving complex UI/UX challenges with precision and speed.
+                I'm <span className="text-white font-bold">A Frontend Developer & UI/UX Designer</span> with 3+ years of experience creating clean, high-impact digital experiences. I specialize in building responsive interfaces, strong brand visuals, and solving complex UI/UX challenges with precision and speed.
               </p>
 
               <div className="flex flex-wrap gap-2 md:gap-4 justify-center lg:justify-start pt-2 md:pt-4">
@@ -387,6 +387,6 @@ export function CinematicHero({
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
