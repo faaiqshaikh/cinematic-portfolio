@@ -51,7 +51,7 @@ export default function AnimatedTextCycle({
       opacity: 1,
       filter: "blur(0px)",
       transition: {
-        type: "tween",
+        type: "tween" as const,
         duration: 0.4
       }
     },
@@ -60,7 +60,7 @@ export default function AnimatedTextCycle({
       opacity: 0,
       filter: "blur(8px)",
       transition: {
-        type: "tween",
+        type: "tween" as const,
         duration: 0.3
       }
     },
