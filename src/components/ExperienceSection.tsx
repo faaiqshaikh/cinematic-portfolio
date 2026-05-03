@@ -37,11 +37,10 @@ export function ExperienceSection() {
     const nodes = gsap.utils.toArray<HTMLElement>(".milestone-node");
     nodes.forEach((node, i) => {
       gsap.fromTo(node,
-        { scale: 0, opacity: 0, boxShadow: "0 0 0 rgba(255,255,255,0)" },
+        { scale: 0, opacity: 0 },
         {
           scale: 1,
           opacity: 1,
-          boxShadow: "0 0 30px rgba(255,255,255,0.8)",
           ease: "back.out(1.7)",
           scrollTrigger: {
             trigger: node,

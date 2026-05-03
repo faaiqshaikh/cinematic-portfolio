@@ -57,7 +57,7 @@ export function NavBar() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
           isScrolled 
-            ? "py-4 bg-background/80 backdrop-blur-2xl border-b border-border shadow-xl" 
+            ? "py-4 bg-background/80 backdrop-blur-lg md:backdrop-blur-2xl border-b border-border shadow-xl" 
             : "py-6 bg-transparent"
         }`}
       >

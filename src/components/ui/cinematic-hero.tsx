@@ -5,7 +5,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import Spline from "@splinetool/react-spline";
+import dynamic from "next/dynamic";
+const Spline = dynamic(() => import("@splinetool/react-spline"), {
+  ssr: false,
+  loading: () => <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" />
+});
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,12 +18,7 @@ if (typeof window !== "undefined") {
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
 
-  /* Environment Overlays */
-  .film-grain {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 50; opacity: 0.05; mix-blend-mode: overlay;
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
-  }
+  /* Removed film-grain SVG filter for performance */
 
   .scroll-indicator-container {
       position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
@@ -114,8 +113,12 @@ const INJECTED_STYLES = `
   /* Deep Physical Card with Dynamic Mouse Lighting */
   .premium-depth-card {
       background: linear-gradient(165deg, rgba(20, 20, 25, 0.95) 0%, rgba(5, 5, 10, 0.98) 100%);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      @media (max-width: 768px) {
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+      }
       box-shadow: 
           0 100px 150px -50px rgba(0, 0, 0, 1),
           0 50px 100px -50px rgba(0, 0, 0, 0.9),
@@ -176,9 +179,12 @@ export function CinematicHero({
   const containerRef = useRef<HTMLDivElement>(null);
   const mainCardRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number>(0);
+  const [showSpline, setShowSpline] = React.useState(false);
 
   // 1. Force Scroll Top & Mouse Tracking
   useEffect(() => {
+    const timer = setTimeout(() => setShowSpline(true), 2000);
+
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
@@ -190,7 +196,8 @@ export function CinematicHero({
     window.scrollTo(0, 0);
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (window.scrollY > window.innerHeight * 2) return;
+      if (window.innerWidth < 768) return; // Disable on mobile for performance
+      if (window.scrollY > window.innerHeight * 1.5) return;
 
       cancelAnimationFrame(requestRef.current);
 
@@ -232,23 +239,39 @@ export function CinematicHero({
     const ctx = gsap.context(() => {
       // Initialize Hero States
       gsap.set(".gsap-reveal", { autoAlpha: 0, y: 30 });
+      gsap.set(".hero-title-reveal", { yPercent: 100, y: 0, autoAlpha: 0 });
 
-      // 1. Initial Entrance Animation (Immediate)
-      gsap.to(".gsap-reveal.hero-title", {
+      // 1. Initial Entrance Animation (Cinematic Reveal)
+      const titleTl = gsap.timeline({ delay: 0.5 });
+
+      titleTl.to(".hero-title-reveal", {
+        yPercent: 0,
         autoAlpha: 1,
-        y: 0,
+        duration: 2,
         stagger: 0.2,
-        duration: 1.5,
-        ease: "power4.out",
-        delay: 0.5
-      });
+        ease: "expo.out",
+      })
+        .fromTo(".hero-title-reveal",
+          {
+            letterSpacing: "0.4em",
+            filter: "blur(15px)",
+          },
+          {
+            letterSpacing: "inherit",
+            filter: "blur(0px)",
+            duration: 2.5,
+            stagger: 0.2,
+            ease: "power4.out"
+          },
+          0
+        );
 
       gsap.to(".scroll-indicator-container", {
         autoAlpha: 1,
         y: 0,
         duration: 1,
         ease: "power2.out",
-        delay: 1.5
+        delay: 2
       });
 
       // 2. Scroll-Tied Timeline
@@ -257,17 +280,16 @@ export function CinematicHero({
           trigger: containerRef.current,
           start: "top top",
           end: "+=400%",
-          scrub: 1.2,
+          scrub: 1.5,
           pin: true,
           anticipatePin: 1,
         }
       });
 
       tl.to([".hero-text-wrapper", ".scroll-indicator-container"], {
-        scale: 0.85,
-        z: -500,
+        scale: 0.9,
+        y: -100,
         autoAlpha: 0,
-        filter: "blur(20px)",
         duration: 2,
         ease: "power2.inOut"
       }, "+=0.5")
@@ -303,17 +325,20 @@ export function CinematicHero({
       {...props}
     >
       <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
-      <div className="film-grain" aria-hidden="true" />
       <div className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
 
       {/* BACKGROUND LAYER: Hero Texts */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-6 will-change-transform transform-style-3d">
-        <h1 className="text-track gsap-reveal hero-title text-4xl md:text-7xl lg:text-[6rem] font-thin tracking-tight mb-2 leading-none">
-          {tagline1}
-        </h1>
-        <h1 className="text-days gsap-reveal hero-title text-4xl md:text-7xl lg:text-[6rem] font-thin tracking-tighter leading-none">
-          {tagline2}
-        </h1>
+        <div className="overflow-hidden mb-2">
+          <h1 className="text-track gsap-reveal hero-title-reveal text-3xl md:text-6xl lg:text-[3.5rem] font-medium tracking-tight leading-none">
+            {tagline1}
+          </h1>
+        </div>
+        <div className="overflow-hidden">
+          <h1 className="text-days gsap-reveal hero-title-reveal text-3xl md:text-6xl lg:text-[3.5rem] font-thin tracking-tighter leading-none">
+            {tagline2}
+          </h1>
+        </div>
       </div>
 
       {/* Modern Scroll Indicator */}
@@ -364,19 +389,13 @@ export function CinematicHero({
                 {/* Removed card background and border to free the robot */}
                 <div className="relative z-20 w-[150%] h-[150%] flex items-center justify-center">
                   <div className="w-full h-full relative">
-                    <Suspense fallback={
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex flex-col items-center gap-3">
-                          <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" />
-                        </div>
-                      </div>
-                    }>
-                      <div className="absolute inset-0 w-[200%] h-[200%] left-[-50%] top-[-50%] origin-center scale-50 md:scale-[0.6] lg:scale-[0.7]">
+                    <div className="absolute inset-0 w-[200%] h-[200%] left-[-50%] top-[-50%] origin-center scale-50 md:scale-[0.6] lg:scale-[0.7]">
+                      {showSpline && (
                         <Spline
                           scene="https://prod.spline.design/axdRrwIXDvsCMqUi/scene.splinecode"
                         />
-                      </div>
-                    </Suspense>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

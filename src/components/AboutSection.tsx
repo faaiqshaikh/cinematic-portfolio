@@ -57,7 +57,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1, type: "spring", bounce: 0.4 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="relative z-10 p-8 rounded-3xl bg-white/5 dark:bg-black/40 backdrop-blur-2xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden"
+            className="relative z-10 p-8 rounded-3xl bg-white/5 dark:bg-black/40 backdrop-blur-lg md:backdrop-blur-2xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
             <div className="relative z-20 space-y-6">

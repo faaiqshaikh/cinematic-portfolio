@@ -1,5 +1,4 @@
 import { CinematicHero } from "@/components/ui/cinematic-hero";
-import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { Testimonial } from "@/components/ui/clean-testimonial";
@@ -13,11 +12,7 @@ export default function Home() {
       <div className="overflow-x-hidden w-[100%] min-h-screen">
         <CinematicHero
           brandName="Faiq's Studio"
-          tagline1={<>Crafting <AnimatedTextCycle
-            words={["Digital", "Modern", "Scalable", "Minimal", "Responsive"]}
-            interval={3000}
-            className="text-primary"
-          /> Interfaces</>}
+          tagline1="Crafting Digital Interfaces"
           tagline2="Beyond the Expected."
           cardHeading="UI/UX Designer & Developer"
           cardDescription={<><span className="text-white font-semibold">M. Faiq Shaikh </span>

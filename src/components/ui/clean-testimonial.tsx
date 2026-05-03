@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState, useCallback, useRef, useEffect } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
+import NextImage from "next/image"
 
 const testimonials = [
   {
@@ -45,8 +46,8 @@ function SplitText({ text }: { text: string }) {
       {words.map((word, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.4,
             delay: i * 0.03,
@@ -77,7 +78,7 @@ export function Testimonial() {
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (!containerRef.current) return
+      if (!containerRef.current || window.innerWidth < 768) return
       const rect = containerRef.current.getBoundingClientRect()
       mouseX.set(e.clientX - rect.left)
       mouseY.set(e.clientY - rect.top)
@@ -164,7 +165,9 @@ export function Testimonial() {
               }`}
             whileHover={{ scale: 1.1, opacity: 1 }}
           >
-            <img src={t.avatar || "/placeholder.svg"} alt={t.author} className="w-full h-full object-cover" />
+            <div className="relative w-full h-full">
+              <NextImage src={t.avatar || "/placeholder.svg"} alt={t.author} fill className="object-cover" sizes="24px" />
+            </div>
           </motion.div>
         ))}
       </motion.div>
@@ -195,17 +198,17 @@ export function Testimonial() {
                 transition={{ duration: 0.5 }}
               />
               {testimonials.map((t, i) => (
-                <motion.img
+                <motion.div
                   key={t.avatar}
-                  src={t.avatar}
-                  alt={t.author}
-                  className="absolute inset-0 w-12 h-12 rounded-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-500"
+                  className="absolute inset-0 w-12 h-12 rounded-full overflow-hidden grayscale hover:grayscale-0 transition-[filter] duration-500"
                   animate={{
                     opacity: i === activeIndex ? 1 : 0,
                     zIndex: i === activeIndex ? 1 : 0,
                   }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
-                />
+                >
+                  <NextImage src={t.avatar} alt={t.author} fill className="object-cover" sizes="48px" />
+                </motion.div>
               ))}
             </div>
 

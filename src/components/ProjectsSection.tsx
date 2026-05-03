@@ -39,8 +39,7 @@ const projects = [
     category: "CSS Debugging",
     description: "Fixed major cross-browser issues without changing HTML logic. Refactored 800+ lines of CSS code for optimal performance.",
     color: "from-blue-600/20 to-indigo-600/20",
-    media: "https://www.pexels.com/download/video/34268137/",
-    type: "video",
+    image: "url('https://images.pexels.com/photos/31343632/pexels-photo-31343632.jpeg')",
   }
 ];
 
@@ -99,6 +98,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
   const translateY = useTransform(smoothY, [-0.5, 0.5], [-20, 20]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth < 768) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
