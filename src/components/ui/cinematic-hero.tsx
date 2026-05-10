@@ -236,7 +236,7 @@ export function CinematicHero({
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
     const timer = setTimeout(() => {
-      if (!isMobile) setShowSpline(true);
+      setShowSpline(true);
     }, 2000);
 
     const ctx = gsap.context(() => {
@@ -384,15 +384,15 @@ export function CinematicHero({
             </div>
 
             {/* Right Column: Core Strengths Card */}
-            <div className="card-right-text relative w-full max-w-md mx-auto lg:ml-auto group/card">
+            <div className="card-right-text relative w-full max-w-md mx-auto lg:ml-auto group/card mt-16 lg:mt-0">
               {/* Outer Glow Effect */}
               <div className="absolute -inset-2 bg-blue-500/10 rounded-[40px] blur-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700" />
 
-              <div className="relative z-10 w-full h-[150px] md:h-[700px] flex items-center justify-center transition-all duration-500">
+              <div className="relative z-10 w-full h-[130px] md:h-[700px] flex items-center justify-center transition-all duration-500">
                 {/* Removed card background and border to free the robot */}
                 <div className="relative z-20 w-[150%] h-[150%] flex items-center justify-center">
                   <div className="w-full h-full relative">
-                    <div className="absolute inset-0 w-[200%] h-[200%] left-[-50%] top-[-50%] origin-center scale-50 md:scale-[0.6] lg:scale-[0.7]">
+                    <div className="absolute inset-0 w-[200%] h-[200%] left-[-55%] md:left-[-50%] top-[-50%] origin-center scale-[1.4] md:scale-[0.6] lg:scale-[0.7]">
                       {showSpline && (
                         <Spline
                           scene="https://prod.spline.design/axdRrwIXDvsCMqUi/scene.splinecode"
