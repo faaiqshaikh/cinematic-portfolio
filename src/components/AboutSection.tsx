@@ -53,11 +53,11 @@ export function AboutSection() {
 
         <div className="relative">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
+            initial={{ opacity: 0, scale: 0.9, rotateY: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 20 }}
             whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1, type: "spring", bounce: 0.4 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="relative z-10 p-8 rounded-3xl bg-white/5 dark:bg-black/40 backdrop-blur-lg md:backdrop-blur-2xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden"
+            className="relative z-10 p-8 rounded-3xl bg-white/5 dark:bg-black/40 md:backdrop-blur-2xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
             <div className="relative z-20 space-y-6">
@@ -82,7 +82,7 @@ export function AboutSection() {
 
           {/* Floating UI elements */}
           <motion.div
-            animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
+            animate={typeof window !== 'undefined' && window.innerWidth < 768 ? {} : { y: [-10, 10, -10], rotate: [0, 5, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="absolute -right-8 -top-8 p-4 rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 z-20"
           >

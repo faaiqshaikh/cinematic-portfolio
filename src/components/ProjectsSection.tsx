@@ -13,7 +13,7 @@ const projects = [
     description:
       "Responsive luxury landing page with animations and booking form. Resulted in a 40% increase in client inquiries.",
     color: "from-amber-600/20 to-orange-600/20",
-    media: "https://cdn.dribbble.com/userupload/46505142/file/dc7ca2bd26531f3332e68cbba5e65d02.mp4",
+    media: "",
     type: "video",
   },
   {
@@ -22,7 +22,7 @@ const projects = [
     category: "Coffee Brand Identity",
     description: "Complete branding system including logo, colors, and typography. Delivered multiple concepts within 48 hours.",
     color: "from-stone-600/20 to-neutral-600/20",
-    media: "https://cdn.dribbble.com/userupload/17480907/file/original-a852d1790482c8fa61bef2c26ee29f1a.mp4",
+    media: "",
     type: "video",
   },
   {
@@ -84,8 +84,10 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
     offset: ["start end", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.9]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], isMobile ? [1, 1, 1] : [0.8, 1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], isMobile ? [1, 1, 1, 1] : [0, 1, 1, 0]);
 
   // Parallax setup
   const mouseX = useMotionValue(0);
@@ -142,7 +144,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               className="absolute inset-0 w-full h-full object-cover"
             />
           )}
-          <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-overlay opacity-30 group-hover:opacity-80 transition-opacity duration-700`} />
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-overlay opacity-30 md:group-hover:opacity-80 transition-opacity duration-700`} />
         </motion.div>
       </div>
 
@@ -158,7 +160,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         <div className="pt-6">
           <Button variant="cinematic" className="rounded-full w-fit group/btn">
             View Case Study
-            <ArrowUpRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+            <ArrowUpRight className="ml-2 w-4 h-4 transition-transform md:group-hover/btn:translate-x-1 md:group-hover/btn:-translate-y-1" />
           </Button>
         </div>
       </div>

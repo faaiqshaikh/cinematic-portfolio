@@ -116,8 +116,8 @@ const INJECTED_STYLES = `
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       @media (max-width: 768px) {
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
       }
       box-shadow: 
           0 100px 150px -50px rgba(0, 0, 0, 1),
@@ -235,6 +235,9 @@ export function CinematicHero({
   // 2. Complex Cinematic Scroll Timeline
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
+    const timer = setTimeout(() => {
+      if (!isMobile) setShowSpline(true);
+    }, 2000);
 
     const ctx = gsap.context(() => {
       // Initialize Hero States
@@ -279,8 +282,8 @@ export function CinematicHero({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=400%",
-          scrub: 1.5,
+          end: isMobile ? "+=150%" : "+=250%",
+          scrub: isMobile ? 0.3 : 0.6,
           pin: true,
           anticipatePin: 1,
         }
@@ -292,7 +295,7 @@ export function CinematicHero({
         autoAlpha: 0,
         duration: 2,
         ease: "power2.inOut"
-      }, "+=0.5")
+      }, "+=0.3")
         .fromTo(".main-card",
           { scale: 1.5, z: 800, autoAlpha: 0, rotateX: 20 },
           { scale: 1, z: 0, autoAlpha: 1, rotateX: 0, ease: "expo.out", duration: 2.5 },
@@ -302,7 +305,7 @@ export function CinematicHero({
         .fromTo(".card-left-text", { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1")
         .fromTo(".card-right-text", { x: 50, autoAlpha: 0, scale: 0.9 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
 
-      tl.to({}, { duration: 2.5 }) // Hold time for reading
+      tl.to({}, { duration: 1.2 }) // Hold time for reading (reduced for better sensitivity)
 
       tl.addLabel("pullback")
       tl.to([".main-card", ".card-left-text", ".card-right-text"], {
