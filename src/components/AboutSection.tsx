@@ -36,18 +36,18 @@ export function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen py-32 px-6 flex items-center justify-center bg-background overflow-hidden"
+      className="relative min-h-screen pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-20 lg:pb-24 px-6 flex items-center justify-center bg-background overflow-hidden"
     >
       {/* Background glow effects */}
       <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen -translate-y-1/2 -z-10" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] mix-blend-screen -z-10" />
 
-      <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div ref={textRef} className="space-y-8">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+      <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+        <div ref={textRef} className="space-y-3 md:space-y-5">
+          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight">
             Crafting pixel-perfect <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">landing pages</span> & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">identities</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+          <p className="text-base lg:text-base text-muted-foreground leading-relaxed font-light">
             Hi, I'm Mohammedfaiq Shaikh. I specialize in designing memorable brand identities and building highly responsive layouts. I approach every project with mobile-first thinking, creative problem-solving, and a dedication to unlimited revisions until the final result is flawless.</p>
         </div>
 

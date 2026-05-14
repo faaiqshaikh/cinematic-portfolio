@@ -356,21 +356,21 @@ export function CinematicHero({
       <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none" style={{ perspective: "1500px" }}>
         <div
           ref={mainCardRef}
-          className="main-card premium-depth-card relative overflow-hidden gsap-reveal flex items-center justify-center pointer-events-auto w-[92vw] md:w-[85vw] h-fit md:h-[85vh] rounded-[32px] md:rounded-[40px]"
+          className="main-card premium-depth-card relative overflow-hidden gsap-reveal flex items-center justify-center pointer-events-auto w-[92vw] md:w-[85vw] h-fit md:h-[65vh] rounded-[32px] md:rounded-[40px]"
         >
           <div className="card-sheen" aria-hidden="true" />
 
           <div
             id="about"
-            className="relative w-full h-full max-w-6xl mx-auto px-5 md:px-12 flex flex-col lg:grid lg:grid-cols-2 items-center gap-4 md:gap-12 lg:gap-16 z-10 py-10 md:py-12 overflow-visible custom-scrollbar"
+            className="relative w-full h-full max-w-6xl mx-auto px-5 md:px-12 flex flex-col lg:grid lg:grid-cols-2 items-start gap-4 md:gap-6 lg:gap-10 z-10 pt-4 md:pt-6 lg:pt-8 pb-8 md:pb-10 lg:pb-12 overflow-y-auto lg:overflow-hidden custom-scrollbar"
           >
 
             {/* Left Column: About Text */}
-            <div className="card-left-text flex flex-col space-y-5 md:space-y-8 text-center lg:text-left w-full">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.2]">
+            <div className="card-left-text flex flex-col space-y-2 md:space-y-3 lg:space-y-5 text-center lg:text-left w-full">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-[1.1] md:leading-[1.2]">
                 Nice to meet you - <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">I'm Faiq Shaikh</span>
               </h2>
-              <p className="text-sm md:text-lg lg:text-xl text-blue-100/70 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
+              <p className="text-[13px] md:text-sm lg:text-base text-blue-100/70 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
                 I'm <span className="text-white font-bold">A Frontend Developer & UI/UX Designer</span> with 3+ years of experience creating clean, high-impact digital experiences. I specialize in building responsive interfaces, strong brand visuals, and solving complex UI/UX challenges with precision and speed.
               </p>
 
@@ -388,7 +388,7 @@ export function CinematicHero({
               {/* Outer Glow Effect */}
               <div className="absolute -inset-2 bg-blue-500/10 rounded-[40px] blur-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700" />
 
-              <div className="relative z-10 w-full h-[130px] md:h-[700px] flex items-center justify-center transition-all duration-500">
+              <div className="relative z-10 w-full h-[120px] md:h-[250px] lg:h-[350px] xl:h-[500px] flex items-center justify-center transition-all duration-500">
                 {/* Removed card background and border to free the robot */}
                 <div className="relative z-20 w-[150%] h-[150%] flex items-center justify-center">
                   <div className="w-full h-full relative">

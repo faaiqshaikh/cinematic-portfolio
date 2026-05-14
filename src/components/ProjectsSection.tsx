@@ -8,39 +8,41 @@ import { Button } from "./ui/button";
 const projects = [
   {
     id: 1,
-    title: "LuxeStay",
-    category: "Hotel Landing Page",
+    title: "CANDU Reactor Temperature Monitor Simulation",
+    category: "Desktop Application",
     description:
-      "Responsive luxury landing page with animations and booking form. Resulted in a 40% increase in client inquiries.",
+      "This simulator models the heat exchange between the nuclear fuel and the coolant inside a CANDU reactor over time. It calculates how temperatures in both systems change second by second, starting from defined initial conditions, and displays those changes live, the same way a real control room operator would monitor reactor thermal behaviour.",
     color: "from-amber-600/20 to-orange-600/20",
-    media: "",
-    type: "video",
-  },
-  {
-    id: 2,
-    title: "BrewLab",
-    category: "Coffee Brand Identity",
-    description: "Complete branding system including logo, colors, and typography. Delivered multiple concepts within 48 hours.",
-    color: "from-stone-600/20 to-neutral-600/20",
-    media: "",
-    type: "video",
+    image: "url('https://images.pexels.com/photos/459728/pexels-photo-459728.jpeg')",
+    link: "https://github.com/mohammedfaiqshaikh/CANDU-Reactor-Temperature-Monitor-Simulator",
   },
   {
     id: 3,
-    title: "FlowSync",
-    category: "Productivity Dashboard",
-    description: "Designed and developed a productivity dashboard.",
+    title: "Giant Buffalo",
+    category: "Photoshop Image Composition",
+    description: "Complete image composition using multiple images in photoshop. Delivered within 2 hours.",
+    color: "from-stone-600/20 to-neutral-600/20",
+    image: "url('https://cdn.myportfolio.com/c2c06ee4-36c6-4096-b78b-0469de252508/d51584d6-7726-4085-ac7a-4f1b2f067257_rw_1920.png?h=0c1e7cc22121504072f781adb1237c45')",
+    link: "https://faiqstudio.myportfolio.com/photoshop-image-composition-giant-buffalo",
+  },
+  {
+    id: 2,
+    title: "AI Driver Monitoring",
+    category: "UI/UX",
+    description: "Designed the UI/UX for AI based driver monitoring system using Figma.",
     color: "from-emerald-600/20 to-teal-600/20",
-    image: "url('https://cdn.dribbble.com/userupload/42933143/file/original-d47aad0a19c51613c0a06b069e89decd.png?resize=2048x1536&vertical=center')",
+    image: "url('https://cdn.myportfolio.com/c2c06ee4-36c6-4096-b78b-0469de252508/4800b8cd-229a-4e54-9aaa-902b9fd9bcc3_rw_1920.png?h=3d0fee4d9838e4bd4edc08fb6fde5dfc')",
+    link: "https://www.figma.com/proto/q14EJ2WtkQ1336VKrYIrvS/Welcome-Page?node-id=410-32",
   },
   {
     id: 4,
-    title: "BugSquash",
-    category: "CSS Debugging",
-    description: "Fixed major cross-browser issues without changing HTML logic. Refactored 800+ lines of CSS code for optimal performance.",
+    title: "Raindeer",
+    category: "Image Editing",
+    description: "Applied glowing horn effect using advanced photoshop tools.",
     color: "from-blue-600/20 to-indigo-600/20",
-    image: "url('https://images.pexels.com/photos/31343632/pexels-photo-31343632.jpeg')",
-  }
+    image: "url('https://cdn.myportfolio.com/c2c06ee4-36c6-4096-b78b-0469de252508/efd3ef71-1cda-4233-bd62-59005701e88b_rw_1200.png?h=59d17ea6be44f2bce49a3c20d99b6baa')",
+    link: "https://faiqstudio.myportfolio.com/reindeers-glowing-horn-using-photoshop",
+  },
 ];
 
 export function ProjectsSection() {
@@ -159,7 +161,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
 
         <div className="pt-6">
           <Button variant="cinematic" className="rounded-full w-fit group/btn">
-            View Case Study
+            View Project
             <ArrowUpRight className="ml-2 w-4 h-4 transition-transform md:group-hover/btn:translate-x-1 md:group-hover/btn:-translate-y-1" />
           </Button>
         </div>
